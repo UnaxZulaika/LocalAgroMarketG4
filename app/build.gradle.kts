@@ -1,5 +1,7 @@
 plugins {
     id("com.android.application")
+
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -29,6 +31,15 @@ android {
 }
 
 dependencies {
+
+    //  Bom erabiltzean firebaseko dependentzia guztiek bom-aren bertsioa artuko dute.
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+
+    // Firebase Authentication
+    implementation("com.google.firebase:firebase-auth")
+
+    // Firebase Database
+    implementation("com.google.firebase:firebase-database")
 
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
