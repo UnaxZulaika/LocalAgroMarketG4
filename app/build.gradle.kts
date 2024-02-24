@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.localagromarket"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.localagromarket"
@@ -31,6 +31,12 @@ android {
 }
 
 dependencies {
+
+    // mapa
+    implementation("org.osmdroid:osmdroid-android:6.1.17")
+
+    // Lokalizazioa
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
     //  Bom erabiltzean firebaseko dependentzia guztiek bom-aren bertsioa artuko dute.
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))

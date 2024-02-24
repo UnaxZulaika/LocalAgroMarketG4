@@ -10,4 +10,12 @@
     <string name="sartuEposta">Sartu zure E-posta</string>
     <string name="sartuPasahitza">Sartu zure pasahitza</string>
     <string name="pasahitzaGorde">Pasahitza gorde</string>
+    <string name="loginErrorea">Datu horiek dituen konturik ez dago, saiatu berriro.</string>
+
+    <!--Botoien nabegazioa -->
+    <string name="produktuak">Produktuak</string>
+    <string name="mapa">Mapa</string>
+    <string name="profila">Profila</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
