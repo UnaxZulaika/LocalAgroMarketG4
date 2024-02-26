@@ -32,6 +32,13 @@ android {
 
 dependencies {
 
+    //pdf
+    implementation("com.itextpdf:itext7-core:7.1.15")
+
+
+    //cardview
+    implementation("androidx.cardview:cardview:1.0.0")
+
     // mapa
     implementation("org.osmdroid:osmdroid-android:6.1.17")
 

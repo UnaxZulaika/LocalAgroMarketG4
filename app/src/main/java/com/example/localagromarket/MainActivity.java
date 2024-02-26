@@ -12,9 +12,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.osmdroid.config.Configuration;
 
-public class MainActivity extends AppCompatActivity {
-    MapaFragment mapaFragment = new MapaFragment();
-    private static final int GUNEEK_FRAGMENT_ID = R.id.guneakFragment;
+public class
+MainActivity extends AppCompatActivity {
+    private MapaFragment mapaFragment = new MapaFragment();
+    private ProduktuakFragment produktuakFragment = new ProduktuakFragment();
+    private ProfilaFragment profilaFragment = new ProfilaFragment();
+    private static final int PRODUKTUAK_FRAGMENT_ID = R.id.produktuakFragment;
     private static final int MAPA_FRAGMENT_ID = R.id.mapaFragment;
     private static final int PROFILA_FRAGMENT_ID = R.id.profilaFragment;
     @Override
@@ -24,19 +27,19 @@ public class MainActivity extends AppCompatActivity {
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
         erakutsiIkasleMenua();
-
+        loadFragment(produktuakFragment);
     }
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener = item -> {
         int itemId = item.getItemId();
 
-        if (itemId == GUNEEK_FRAGMENT_ID) {
-            //loadFragment(guneakFragment);
+        if (itemId == PRODUKTUAK_FRAGMENT_ID) {
+            loadFragment(produktuakFragment);
             return true;
         } else if (itemId == MAPA_FRAGMENT_ID) {
             loadFragment(mapaFragment);
             return true;
         } else if (itemId == PROFILA_FRAGMENT_ID) {
-            //loadFragment(profilaFragment);
+            loadFragment(profilaFragment);
             return true;
         }
         return false;

@@ -112,7 +112,7 @@
         android:id="@+id/cbPasahitzaGorde"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:enabled="false"
+        android:enabled="true"
         android:text="@string/pasahitzaGorde"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
