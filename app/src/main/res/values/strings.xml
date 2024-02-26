@@ -52,6 +52,10 @@
     <string name="btnDelAcc">Ezabatu kontua</string>
     <string name="descriptionEditIzena">Izena editatzeko botoia</string>
     <string name="descriptionEditAbizenak">Abizenak editatzeko botoiak</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Erosketarekin jarraitu -->
+    <string name="saskiMezua">Produktua saskian gorde da</string>
+    <string name="erostenJarraitu">Erosten jarraitu</string>
+    <string name="saskiraJoan">Saskira joan</string>
+
 </resources>

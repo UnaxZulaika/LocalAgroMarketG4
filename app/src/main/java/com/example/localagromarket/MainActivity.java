@@ -27,7 +27,6 @@ MainActivity extends AppCompatActivity {
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
         erakutsiIkasleMenua();
-        loadFragment(produktuakFragment);
     }
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener = item -> {
         int itemId = item.getItemId();
@@ -54,9 +53,8 @@ MainActivity extends AppCompatActivity {
     private void erakutsiIkasleMenua() {
         BottomNavigationView navigationIkasle = findViewById(R.id.bottom_navigation);
         navigationIkasle.setVisibility(View.VISIBLE);
-        //loadFragment(guneakFragment); // Ikaslearen fragmenta kargatzen du
+        loadFragment(produktuakFragment);
         navigationIkasle.setOnItemSelectedListener(mOnNavigationItemSelectedListener); // Nabegazio menuari logika gehitzen dio
-
         // Mapa kargatzeko
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
