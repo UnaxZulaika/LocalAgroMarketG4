@@ -15,11 +15,14 @@ import org.osmdroid.config.Configuration;
 public class
 MainActivity extends AppCompatActivity {
     private MapaFragment mapaFragment = new MapaFragment();
+    private GoikoMenuFragment goikoMenuaFragment = new GoikoMenuFragment();
     private ProduktuakFragment produktuakFragment = new ProduktuakFragment();
     private ProfilaFragment profilaFragment = new ProfilaFragment();
     private static final int PRODUKTUAK_FRAGMENT_ID = R.id.produktuakFragment;
     private static final int MAPA_FRAGMENT_ID = R.id.mapaFragment;
     private static final int PROFILA_FRAGMENT_ID = R.id.profilaFragment;
+    int contenedorId = R.id.frame_container;
+    int contenedorInfoId = R.id.frame_container_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,31 +35,44 @@ MainActivity extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == PRODUKTUAK_FRAGMENT_ID) {
-            loadFragment(produktuakFragment);
+            loadFragment(goikoMenuaFragment, contenedorInfoId);
+            loadFragment(produktuakFragment, contenedorId);
             return true;
         } else if (itemId == MAPA_FRAGMENT_ID) {
-            loadFragment(mapaFragment);
+            // goikoMenuaFragment kentzen du
+            getSupportFragmentManager().beginTransaction().remove(goikoMenuaFragment).commit();
+
+            loadFragment(mapaFragment, contenedorId);
             return true;
         } else if (itemId == PROFILA_FRAGMENT_ID) {
-            loadFragment(profilaFragment);
+            // goikoMenuaFragment kentzen du
+            getSupportFragmentManager().beginTransaction().remove(goikoMenuaFragment).commit();
+
+            loadFragment(profilaFragment, contenedorId);
             return true;
         }
         return false;
     };
 
-    public void loadFragment(Fragment fragment) {
+    public void loadFragment(Fragment fragment, int containerId) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
+        transaction.replace(containerId, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
     private void erakutsiIkasleMenua() {
         BottomNavigationView navigationIkasle = findViewById(R.id.bottom_navigation);
         navigationIkasle.setVisibility(View.VISIBLE);
-        loadFragment(produktuakFragment);
+        loadFragment(goikoMenuaFragment, contenedorInfoId);
+        loadFragment(produktuakFragment, contenedorId);
         navigationIkasle.setOnItemSelectedListener(mOnNavigationItemSelectedListener); // Nabegazio menuari logika gehitzen dio
         // Mapa kargatzeko
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
+    }
+
+    public GoikoMenuFragment getGoikoMenuFragment() {
+        return goikoMenuaFragment;
     }
 }

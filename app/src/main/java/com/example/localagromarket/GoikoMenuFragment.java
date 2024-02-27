@@ -1,5 +1,6 @@
 package com.example.localagromarket;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,12 @@ public class GoikoMenuFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private int productCount = 0;
+
+    private TextView tvIzena;
+    private ImageButton ibSaskia;
+    private TextView cartItemCount;
 
     public GoikoMenuFragment() {
         // Required empty public constructor
@@ -58,7 +68,34 @@ public class GoikoMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goiko_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_goiko_menu, container, false);
+
+        tvIzena = view.findViewById(R.id.tvIzena);
+        ibSaskia = view.findViewById(R.id.ibSaskia);
+        cartItemCount = view.findViewById(R.id.cartItemCount);
+
+        ibSaskia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SaskiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
+    public void updateCartCount() {
+        productCount++;
+        if (productCount > 0) {
+            cartItemCount.setVisibility(View.VISIBLE);
+            if (productCount > 9) {
+                cartItemCount.setText("9+");
+            } else {
+                cartItemCount.setText(String.valueOf(productCount));
+            }
+        } else {
+            cartItemCount.setVisibility(View.INVISIBLE);
+        }
+    }
+
 }

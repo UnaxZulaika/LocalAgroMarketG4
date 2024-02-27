@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private String posta;
     private String pasahitza;
     private TextView tvErregistratuEmen;
+    private ProgressBar pbKarga;
     private List<String> lehentasunakInfo;
     private FirebaseAuth mAuth;
     @Override
@@ -54,9 +56,11 @@ public class LoginActivity extends AppCompatActivity {
         tvErregistratuEmen = findViewById(R.id.tvErregistratuEmen);
         ibPasahitza = findViewById(R.id.ibPasahitza);
         cbPasahitzaGorde = findViewById(R.id.cbPasahitzaGorde);
+        pbKarga = findViewById(R.id.pbKarga);
 
         lehentasunakInfo = lehentasunakKargatu();
 
+        aktibatuUI();
         btnSaioaHasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param pasahitza
      */
     private void saioaHasi(String eposta, String pasahitza) {
+        desaktibatuUI();
         mAuth.signInWithEmailAndPassword(eposta, pasahitza)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -123,9 +128,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
+                        aktibatuUI();
                         // Toast.makeText(MainActivity.this, getResources().getString(R.string.ongiEtorri), Toast.LENGTH_SHORT).show();
                     } else {
                         Exception exception = task.getException();
+                        aktibatuUI();
                         if (exception instanceof FirebaseNetworkException) {
                             Toast.makeText(LoginActivity.this, getResources().getString(R.string.erKonexioaLogin), Toast.LENGTH_SHORT).show();
                         } else if (exception instanceof FirebaseAuthInvalidUserException) {
@@ -183,5 +190,31 @@ public class LoginActivity extends AppCompatActivity {
 
         // Dena gordeko da xml-an.
         editor.apply();
+    }
+
+    /**
+     * Erabiltzailearen interfazea desaktibatuko du eta Karga (ProgressBar) erakutsiko du.
+     */
+    private void desaktibatuUI() {
+        etEposta.setEnabled(false);
+        etPasahitza.setEnabled(false);
+        btnSaioaHasi.setEnabled(false);
+        tvErregistratuEmen.setEnabled(false);
+        ibPasahitza.setEnabled(false);
+        cbPasahitzaGorde.setEnabled(false);
+        pbKarga.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Erabiltzailearen interfazea aktibatuko du eta Karga (ProgressBar) ezkutatu du.
+     */
+    private void aktibatuUI() {
+        etEposta.setEnabled(true);
+        etPasahitza.setEnabled(true);
+        btnSaioaHasi.setEnabled(true);
+        tvErregistratuEmen.setEnabled(true);
+        ibPasahitza.setEnabled(true);
+        cbPasahitzaGorde.setEnabled(true);
+        pbKarga.setVisibility(View.INVISIBLE);
     }
 }

@@ -24,6 +24,9 @@ import androidx.fragment.app.Fragment;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ProduktuakFragment extends Fragment {
 
@@ -43,7 +46,17 @@ public class ProduktuakFragment extends Fragment {
 
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {erakutsiMezua();
+            public void onClick(View v) {
+                erakutsiMezua();
+
+                if (getActivity() != null && getActivity() instanceof MainActivity) {
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    GoikoMenuFragment goikoMenuaFragment = mainActivity.getGoikoMenuFragment();
+
+                    if (goikoMenuaFragment != null) {
+                        goikoMenuaFragment.updateCartCount();
+                    }
+                }
             }
         });
 
@@ -60,6 +73,10 @@ public class ProduktuakFragment extends Fragment {
     }
 
     private void createPdf() {
+        // Data
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String momentukoData = dateFormat.format(new Date());
+
         // Create a new PdfDocument
         PdfDocument document = new PdfDocument();
 
@@ -90,7 +107,7 @@ public class ProduktuakFragment extends Fragment {
         paint.setTextSize(12);
         paint.setFakeBoldText(false);
         canvas.drawText("Número de factura: 001", 50, 180, paint);
-        canvas.drawText("Fecha: 26/02/2024", 50, 200, paint);
+        canvas.drawText("Fecha: " + momentukoData, 50, 200, paint);
         canvas.drawText("Cliente: Juan Pérez", 50, 220, paint);
         canvas.drawText("Dirección: Calle Principal, 123", 50, 240, paint);
 
@@ -129,7 +146,7 @@ public class ProduktuakFragment extends Fragment {
 
         // Save the document
         String directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
-        String filePath = directoryPath + "/Factura.pdf";
+        String filePath = directoryPath + "/Facturas.pdf";
         File file = new File(filePath);
         try {
             document.writeTo(new FileOutputStream(file));
@@ -165,6 +182,7 @@ public class ProduktuakFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SaskiActivity.class);
                 startActivity(intent);
+                alertDialog.dismiss();
             }
         });
         if (alertDialog.getWindow() != null) {

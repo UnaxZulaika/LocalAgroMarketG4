@@ -6,9 +6,49 @@
     tools:context=".GoikoMenuFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="A" />
+        android:orientation="horizontal"
+        android:layout_margin="10sp">
+
+        <TextView
+            android:id="@+id/tvIzena"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Izena:" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvIzena"
+            android:layout_marginStart="8dp">
+
+            <ImageButton
+                android:id="@+id/ibSaskia"
+                android:layout_width="47sp"
+                android:layout_height="40sp"
+                android:src="@drawable/saskia"
+                android:background="@null"
+                android:contentDescription="Add to Cart" />
+
+            <TextView
+                android:id="@+id/cartItemCount"
+                android:layout_width="21.3sp"
+                android:layout_height="22sp"
+                android:layout_alignTop="@id/ibSaskia"
+                android:layout_alignEnd="@id/ibSaskia"
+                android:background="@drawable/circle_background"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="0"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
