@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/ivHeaderImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="350sp"
+        android:layout_height="200sp"
         android:layout_marginTop="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/local_agro_market_logo"

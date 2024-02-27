@@ -146,7 +146,7 @@ public class ProduktuakFragment extends Fragment {
 
         // Save the document
         String directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
-        String filePath = directoryPath + "/Facturas.pdf";
+        String filePath = directoryPath + "/Factura.pdf";
         File file = new File(filePath);
         try {
             document.writeTo(new FileOutputStream(file));

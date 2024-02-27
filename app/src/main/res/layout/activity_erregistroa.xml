@@ -18,31 +18,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266">
 
+        app:layout_constraintVertical_bias="0.266">
         <ImageView
             android:id="@+id/ivHeaderImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="350dp"
+            android:layout_height="150dp"
             android:scaleType="centerInside"
             android:src="@drawable/local_agro_market_logo"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/app_nameLarriz"
-            android:textColor="@color/black"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivHeaderImage"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 
