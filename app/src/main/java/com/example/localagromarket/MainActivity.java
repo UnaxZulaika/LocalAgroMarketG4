@@ -1,8 +1,11 @@
 package com.example.localagromarket;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.window.OnBackInvokedDispatcher;
@@ -19,13 +22,6 @@ import org.osmdroid.config.Configuration;
 public class
 MainActivity extends AppCompatActivity implements GoikoMenuFragment.ProfilaFragmentClickListener {
 
-    @Override
-    public void onProfilaFragmentClicked() {
-        getSupportFragmentManager().beginTransaction().remove(goikoMenuaFragment).commit();
-
-        loadFragment(profilaFragment, contenedorId);
-    }
-
     private MapaFragment mapaFragment = new MapaFragment();
     private GoikoMenuFragment goikoMenuaFragment = new GoikoMenuFragment();
     private ProduktuakFragment produktuakFragment = new ProduktuakFragment();
@@ -33,12 +29,19 @@ MainActivity extends AppCompatActivity implements GoikoMenuFragment.ProfilaFragm
     private static final int PRODUKTUAK_FRAGMENT_ID = R.id.produktuakFragment;
     private static final int MAPA_FRAGMENT_ID = R.id.mapaFragment;
     private static final int PROFILA_FRAGMENT_ID = R.id.profilaFragment;
+    private static final int UNCHECKED_ITEM_ID = R.id.uncheckedItem;
     int contenedorId = R.id.frame_container;
     int contenedorInfoId = R.id.frame_container_info;
+
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.findViewById(R.id.uncheckedItem).setVisibility(View.GONE);
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
         erakutsiIkasleMenua();
@@ -49,12 +52,19 @@ MainActivity extends AppCompatActivity implements GoikoMenuFragment.ProfilaFragm
         if (itemId == PRODUKTUAK_FRAGMENT_ID) {
             loadFragment(goikoMenuaFragment, contenedorInfoId);
             loadFragment(produktuakFragment, contenedorId);
+
+            bottomNavigationView.getMenu().findItem(R.id.produktuakFragment).setChecked(true);
+            bottomNavigationView.findViewById(R.id.uncheckedItem).setVisibility(View.GONE);
+
             return true;
         } else if (itemId == MAPA_FRAGMENT_ID) {
             // goikoMenuaFragment kentzen du
             getSupportFragmentManager().beginTransaction().remove(goikoMenuaFragment).commit();
 
             loadFragment(mapaFragment, contenedorId);
+
+            bottomNavigationView.getMenu().findItem(R.id.mapaFragment).setChecked(true);
+            bottomNavigationView.findViewById(R.id.uncheckedItem).setVisibility(View.GONE);
             return true;
         } else if (itemId == PROFILA_FRAGMENT_ID) {
             // goikoMenuaFragment kentzen du
@@ -74,12 +84,11 @@ MainActivity extends AppCompatActivity implements GoikoMenuFragment.ProfilaFragm
     }
 
     private void erakutsiIkasleMenua() {
-        BottomNavigationView navigationIkasle = findViewById(R.id.bottom_navigation);
-        navigationIkasle.setVisibility(View.VISIBLE);
+        bottomNavigationView.setVisibility(View.VISIBLE);
         loadFragment(goikoMenuaFragment, contenedorInfoId);
         loadFragment(produktuakFragment, contenedorId);
         goikoMenuaFragment.setProfilaFragmentClickListener(this);
-        navigationIkasle.setOnItemSelectedListener(mOnNavigationItemSelectedListener); // Nabegazio menuari logika gehitzen dio
+        bottomNavigationView.setOnItemSelectedListener(mOnNavigationItemSelectedListener); // Nabegazio menuari logika gehitzen dio
         // Mapa kargatzeko
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
@@ -92,13 +101,19 @@ MainActivity extends AppCompatActivity implements GoikoMenuFragment.ProfilaFragm
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setSelectedItemId(PRODUKTUAK_FRAGMENT_ID);
 
         loadFragment(goikoMenuaFragment, contenedorInfoId);
         loadFragment(produktuakFragment, contenedorId);
+    }
 
+    @Override
+    public void onProfilaFragmentClicked() {
+        getSupportFragmentManager().beginTransaction().remove(goikoMenuaFragment).commit();
+
+        loadFragment(profilaFragment, contenedorId);
+        bottomNavigationView.getMenu().findItem(R.id.uncheckedItem).setChecked(true);
+        bottomNavigationView.findViewById(R.id.uncheckedItem).setVisibility(View.GONE);
     }
 
 

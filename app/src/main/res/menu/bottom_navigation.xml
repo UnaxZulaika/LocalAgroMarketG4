@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/produktuakFragment"
         android:icon="@drawable/saskia"
@@ -9,9 +10,9 @@
         android:id="@+id/mapaFragment"
         android:icon="@drawable/map_24"
         android:title="@string/mapa" />
-<!--    <item-->
-<!--        android:id="@+id/profilaFragment"-->
-<!--        android:icon="@drawable/profile_24"-->
-<!--        android:title="@string/profila" />-->
+    <item
+        android:id="@+id/uncheckedItem"
+        android:title="" />
+
 
 </menu>
