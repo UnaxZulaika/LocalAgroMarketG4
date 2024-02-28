@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,19 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_margin="10sp">
+        android:background="@color/green_dark">
 
-        <TextView
-            android:id="@+id/tvIzena"
+
+        <LinearLayout
+            android:id="@+id/profilaFragment"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Izena:" />
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibProfila"
+                android:layout_width="47sp"
+                android:layout_height="40sp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:contentDescription="Profile"
+                android:src="@drawable/profile_24"
+                app:tint="@color/green_light2" />
+
+            <TextView
+                android:id="@+id/tvIzena"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Unax"
+                android:textColor="@color/green_light2" />
+        </LinearLayout>
+
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/tvIzena"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp">
 
             <ImageButton
@@ -32,7 +58,8 @@
                 android:layout_height="40sp"
                 android:src="@drawable/saskia"
                 android:background="@null"
-                android:contentDescription="Add to Cart" />
+                android:contentDescription="Add to Cart"
+                app:tint="@color/green_light2" />
 
             <TextView
                 android:id="@+id/cartItemCount"

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ public class GoikoMenuFragment extends Fragment {
     private TextView tvIzena;
     private ImageButton ibSaskia;
     private TextView cartItemCount;
+    private LinearLayout profilaFragment;
+    private ImageButton ibProfila;
 
     public GoikoMenuFragment() {
         // Required empty public constructor
@@ -56,6 +59,11 @@ public class GoikoMenuFragment extends Fragment {
         return fragment;
     }
 
+    public interface ProfilaFragmentClickListener {
+        void onProfilaFragmentClicked();
+    }
+    private ProfilaFragmentClickListener profilaFragmentClickListener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,15 +78,36 @@ public class GoikoMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_goiko_menu, container, false);
 
-        tvIzena = view.findViewById(R.id.tvIzena);
+       // tvIzena = view.findViewById(R.id.tvIzena);
         ibSaskia = view.findViewById(R.id.ibSaskia);
         cartItemCount = view.findViewById(R.id.cartItemCount);
+        profilaFragment = view.findViewById(R.id.profilaFragment);
+        ibProfila = view.findViewById(R.id.ibProfila);
+        tvIzena = view.findViewById(R.id.tvIzena);
 
         ibSaskia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SaskiActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ibProfila.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (profilaFragmentClickListener != null) {
+                    profilaFragmentClickListener.onProfilaFragmentClicked();
+                }
+            }
+        });
+
+        tvIzena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (profilaFragmentClickListener != null) {
+                    profilaFragmentClickListener.onProfilaFragmentClicked();
+                }
             }
         });
 
@@ -97,5 +126,10 @@ public class GoikoMenuFragment extends Fragment {
             cartItemCount.setVisibility(View.INVISIBLE);
         }
     }
+
+    public void setProfilaFragmentClickListener(ProfilaFragmentClickListener listener) {
+        this.profilaFragmentClickListener = listener;
+    }
+
 
 }

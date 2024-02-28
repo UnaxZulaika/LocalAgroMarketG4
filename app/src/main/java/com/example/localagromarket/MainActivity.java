@@ -1,9 +1,13 @@
 package com.example.localagromarket;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Toast;
+import android.window.OnBackInvokedDispatcher;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,7 +17,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.osmdroid.config.Configuration;
 
 public class
-MainActivity extends AppCompatActivity {
+MainActivity extends AppCompatActivity implements GoikoMenuFragment.ProfilaFragmentClickListener {
+
+    @Override
+    public void onProfilaFragmentClicked() {
+        getSupportFragmentManager().beginTransaction().remove(goikoMenuaFragment).commit();
+
+        loadFragment(profilaFragment, contenedorId);
+    }
+
     private MapaFragment mapaFragment = new MapaFragment();
     private GoikoMenuFragment goikoMenuaFragment = new GoikoMenuFragment();
     private ProduktuakFragment produktuakFragment = new ProduktuakFragment();
@@ -66,6 +78,7 @@ MainActivity extends AppCompatActivity {
         navigationIkasle.setVisibility(View.VISIBLE);
         loadFragment(goikoMenuaFragment, contenedorInfoId);
         loadFragment(produktuakFragment, contenedorId);
+        goikoMenuaFragment.setProfilaFragmentClickListener(this);
         navigationIkasle.setOnItemSelectedListener(mOnNavigationItemSelectedListener); // Nabegazio menuari logika gehitzen dio
         // Mapa kargatzeko
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
@@ -75,4 +88,19 @@ MainActivity extends AppCompatActivity {
     public GoikoMenuFragment getGoikoMenuFragment() {
         return goikoMenuaFragment;
     }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(PRODUKTUAK_FRAGMENT_ID);
+
+        loadFragment(goikoMenuaFragment, contenedorInfoId);
+        loadFragment(produktuakFragment, contenedorId);
+
+    }
+
+
+
 }

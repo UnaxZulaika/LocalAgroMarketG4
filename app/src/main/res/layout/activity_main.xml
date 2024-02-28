@@ -6,17 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frame_container_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </FrameLayout>
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/frame_container_info">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="76sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintTop_toTopOf="@+id/frame_container_info">
 
         <FrameLayout
             android:id="@+id/frame_container"
@@ -25,6 +20,14 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/frame_container_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         style="@style/BottomNavigation"
