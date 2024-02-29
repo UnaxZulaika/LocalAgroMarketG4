@@ -3,7 +3,8 @@ package com.example.localagromarket.DatuBasea.Entitateak.DAO;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.localagromarket.DatuBasea.Entitateak.BezClass;
+import com.example.localagromarket.DatuBasea.Entitateak.BezeroaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.ProduktuKategoriaClass;
 import com.example.localagromarket.DatuBasea.Entitateak.SaltzaileaClass;
 
 import java.sql.Connection;
@@ -15,32 +16,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class SaltzaileaDAOClass {
+public class BezeroDAOCLass {
     private static final String url = "jdbc:mysql://10.5.13.127:3306/local_agro_market?autoReconnect=true&useSSL=false";
     private static final String user = "aingeru";
     private static final String password = "12345678";
 
-    // GetSaltzaileak
-    public List<SaltzaileaClass> getSaltzaileak() {
+    // GetBezeroa
+    public List<BezeroaClass> getBezeroak() {
         try {
-            return new Saltzaileak().execute().get();
+            return new Bezeroa().execute().get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    private static class Saltzaileak extends AsyncTask<Void, Void, List<SaltzaileaClass>> {
+    private static class Bezeroa extends AsyncTask<Void, Void, List<BezeroaClass>> {
         @Override
-        protected List<SaltzaileaClass> doInBackground(Void... voids) {
-            List<SaltzaileaClass> saltzaileak = new ArrayList<>();
+        protected List<BezeroaClass> doInBackground(Void... voids) {
+            List<BezeroaClass> bezeroak = new ArrayList<>();
             try {
                 Connection conn = DriverManager.getConnection(url, user, password);
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM saltzaileak");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM bezeroa");
 
                 while (rs.next()) {
-                    int kodSaltzailea = rs.getInt(1);
+                    int kodBezeroa = rs.getInt(1);
                     String nan = rs.getString(2);
                     String izena = rs.getString(3);
                     String abizena1 = rs.getString(4);
@@ -52,17 +53,17 @@ public class SaltzaileaDAOClass {
                     String postaKodea = rs.getString(10);
                     String probintzia = rs.getString(11);
                     String herria = rs.getString(12);
-                    SaltzaileaClass saltzailea = new SaltzaileaClass(kodSaltzailea, nan, izena, abizena1, abizena2, helbidea, telefonoa, email, pasahitza, postaKodea, probintzia, herria);
-                    saltzaileak.add(saltzailea);
+                    BezeroaClass bezeroa = new BezeroaClass(kodBezeroa, nan, izena, abizena1, abizena2, helbidea, telefonoa, email, pasahitza, postaKodea, probintzia, herria);
+                    bezeroak.add(bezeroa);
                 }
 
                 rs.close();
                 stmt.close();
                 conn.close();
             } catch (SQLException e) {
-                Log.e("SaltzaileaDAOClass", "Error al ejecutar la consulta MySQL", e);
+                Log.e("BezeroaDAOClass", "Error al ejecutar la consulta MySQL", e);
             }
-            return saltzaileak;
+            return bezeroak;
         }
     }
 }

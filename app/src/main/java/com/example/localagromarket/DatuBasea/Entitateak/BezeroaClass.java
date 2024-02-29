@@ -10,9 +10,12 @@ public class BezeroaClass {
     private String telefonoa;
     private String email;
     private String pasahitza;
+    private String postaKodea;
+    private String probintzia;
+    private String herria;
 
     // Constructor
-    public BezeroaClass(int kodBezeroa, String nan, String izena, String abizena1, String abizena2, String helbidea, String telefonoa, String email, String pasahitza) {
+    public BezeroaClass(int kodBezeroa, String nan, String izena, String abizena1, String abizena2, String helbidea, String telefonoa, String email, String pasahitza, String postaKodea, String probintzia, String herria) {
         this.kodBezeroa = kodBezeroa;
         this.nan = nan;
         this.izena = izena;
@@ -22,6 +25,9 @@ public class BezeroaClass {
         this.telefonoa = telefonoa;
         this.email = email;
         this.pasahitza = pasahitza;
+        this.postaKodea = postaKodea;
+        this.probintzia = probintzia;
+        this.herria = herria;
     }
     public BezeroaClass(){}
 
