@@ -19,6 +19,12 @@
 
     <!-- Erregistroa -->
     <string name="izena">Sartu zure izena</string>
+    <string name="nan">Sartu zure nan-a</string>
+    <string name="helbidea">Sartu zure helbidea</string>
+    <string name="postakodea">Posta kodea</string>
+    <string name="telefonoa">Telefonoa</string>
+    <string name="probinztia">Probintzia</string>
+    <string name="herria">Herria</string>
     <string name="abizenak">Sartu zure abizenak</string>
     <string name="pasahitza1">Sartu zure pasahitza</string>
     <string name="pasahitza2">Errepikatu pasahitza</string>
