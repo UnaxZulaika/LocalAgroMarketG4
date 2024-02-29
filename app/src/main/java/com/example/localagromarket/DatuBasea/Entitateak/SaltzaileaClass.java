@@ -1,4 +1,4 @@
-package com.example.localagromarket.Entitateak;
+package com.example.localagromarket.DatuBasea.Entitateak;
 
 public class SaltzaileaClass {
     private int kodSaltzailea;
@@ -10,9 +10,12 @@ public class SaltzaileaClass {
     private String telefonoa;
     private String email;
     private String pasahitza;
+    private String postaKodea;
+    private String probintzia;
+    private String herria;
 
     // Constructor
-    public SaltzaileaClass(int kodSaltzailea, String nan, String izena, String abizena1, String abizena2, String helbidea, String telefonoa, String email, String pasahitza) {
+    public SaltzaileaClass(int kodSaltzailea, String nan, String izena, String abizena1, String abizena2, String helbidea, String telefonoa, String email, String pasahitza, String postaKodea, String probintzia, String herria) {
         this.kodSaltzailea = kodSaltzailea;
         this.nan = nan;
         this.izena = izena;
@@ -22,6 +25,9 @@ public class SaltzaileaClass {
         this.telefonoa = telefonoa;
         this.email = email;
         this.pasahitza = pasahitza;
+        this.postaKodea = postaKodea;
+        this.probintzia = probintzia;
+        this.herria = herria;
     }
     public SaltzaileaClass(){}
 
@@ -53,6 +59,15 @@ public class SaltzaileaClass {
     public String getPasahitza() {
         return pasahitza;
     }
+    public String getPostaKodea() {
+        return postaKodea;
+    }
+    public String getProbintzia() {
+        return probintzia;
+    }
+    public String getHerria() {
+        return herria;
+    }
 
     // Setters
     public void setKodSaltzailea(int kodSaltzailea) {
@@ -81,5 +96,14 @@ public class SaltzaileaClass {
     }
     public void setPasahitza(String pasahitza) {
         this.pasahitza = pasahitza;
+    }
+    public void setPostaKodea(String postaKodea) {
+        this.postaKodea = postaKodea;
+    }
+    public void setProbintzia(String probintzia) {
+        this.probintzia = probintzia;
+    }
+    public void setHerria(String herria) {
+        this.herria = herria;
     }
 }

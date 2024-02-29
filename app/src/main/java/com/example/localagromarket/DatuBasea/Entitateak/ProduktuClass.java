@@ -1,4 +1,7 @@
-package com.example.localagromarket.Entitateak;
+package com.example.localagromarket.DatuBasea.Entitateak;
+
+import com.example.localagromarket.DatuBasea.Entitateak.ArgazkiaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.BezClass;
 
 public class ProduktuClass {
     private int kodProduktua;

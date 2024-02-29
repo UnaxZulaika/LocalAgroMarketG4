@@ -1,4 +1,6 @@
-package com.example.localagromarket.Entitateak;
+package com.example.localagromarket.DatuBasea.Entitateak;
+
+import com.example.localagromarket.DatuBasea.Entitateak.BezeroaClass;
 
 import java.util.Date;
 

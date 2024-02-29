@@ -1,4 +1,4 @@
-package com.example.localagromarket.Entitateak;
+package com.example.localagromarket.DatuBasea.Entitateak;
 
 import java.util.Date;
 
