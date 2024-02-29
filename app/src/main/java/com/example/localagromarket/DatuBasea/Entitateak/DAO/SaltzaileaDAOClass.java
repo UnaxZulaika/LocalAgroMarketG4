@@ -65,4 +65,51 @@ public class SaltzaileaDAOClass {
             return saltzaileak;
         }
     }
+
+    // GetSaltzailea
+    public List<SaltzaileaClass> getSaltzailea() {
+        try {
+            return new Saltzailea().execute().get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private static class Saltzailea extends AsyncTask<String, Void, List<SaltzaileaClass>> {
+        @Override
+        protected List<SaltzaileaClass> doInBackground(String... filters) {
+            List<SaltzaileaClass> saltzaileak = new ArrayList<>();
+            String filter = filters.length > 0 ? filters[0] : "";
+            try {
+                Connection conn = DriverManager.getConnection(url, user, password);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM saltzaileak");
+
+                while (rs.next()) {
+                    int kodSaltzailea = rs.getInt(1);
+                    String nan = rs.getString(2);
+                    String izena = rs.getString(3);
+                    String abizena1 = rs.getString(4);
+                    String abizena2 = rs.getString(5);
+                    String helbidea = rs.getString(6);
+                    String telefonoa = rs.getString(7);
+                    String email = rs.getString(8);
+                    String pasahitza = rs.getString(9);
+                    String postaKodea = rs.getString(10);
+                    String probintzia = rs.getString(11);
+                    String herria = rs.getString(12);
+                    SaltzaileaClass saltzailea = new SaltzaileaClass(kodSaltzailea, nan, izena, abizena1, abizena2, helbidea, telefonoa, email, pasahitza, postaKodea, probintzia, herria);
+                    saltzaileak.add(saltzailea);
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                Log.e("SaltzaileaDAOClass", "Error al ejecutar la consulta MySQL", e);
+            }
+            return saltzaileak;
+        }
+    }
 }
