@@ -52,7 +52,7 @@
     <string name="etEposta">Eposta</string>
     <string name="etIzena">Izena</string>
     <string name="etAbizenak">Abizenak</string>
-    <string name="etKurtsoa">Kurtsoa</string>
+    <string name="etHelbidea">Helbidea</string>
     <string name="btnAldatuPass">Aldatu Pasahitza</string>
     <string name="btnItxiSaioa">Itxi saioa</string>
     <string name="btnDelAcc">Ezabatu kontua</string>
@@ -63,6 +63,9 @@
     <string name="saskiMezua">Produktua saskian gorde da</string>
     <string name="erostenJarraitu">Erosten jarraitu</string>
     <string name="saskiraJoan">Saskira joan</string>
+
+    <!-- Saskia -->
+    <string name="saltzailea">Saltzailea:</string>
 
 
 </resources>

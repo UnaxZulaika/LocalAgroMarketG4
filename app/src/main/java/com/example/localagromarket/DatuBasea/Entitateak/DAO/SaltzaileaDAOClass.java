@@ -37,7 +37,7 @@ public class SaltzaileaDAOClass {
             try {
                 Connection conn = DriverManager.getConnection(url, user, password);
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM saltzaileak");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM saltzailea");
 
                 while (rs.next()) {
                     int kodSaltzailea = rs.getInt(1);

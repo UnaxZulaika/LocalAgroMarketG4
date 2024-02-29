@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +20,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.localagromarket.DatuBasea.Entitateak.BezeroaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.DAO.BezeroDAOCLass;
+import com.example.localagromarket.DatuBasea.Entitateak.DAO.SaltzaileaDAOClass;
+import com.example.localagromarket.DatuBasea.Entitateak.SaltzaileaClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
@@ -29,6 +34,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,6 +49,9 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar pbKarga;
     private List<String> lehentasunakInfo;
     private FirebaseAuth mAuth;
+
+    private List<BezeroaClass> bezeroak = null;
+    private List<SaltzaileaClass> saltzaileak = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,29 +69,80 @@ public class LoginActivity extends AppCompatActivity {
 
         lehentasunakInfo = lehentasunakKargatu();
 
+        saltzaileak = new SaltzaileaDAOClass().getSaltzaileak();
+        bezeroak = new BezeroDAOCLass().getBezeroak();
+
+
         aktibatuUI();
         btnSaioaHasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                desaktibatuUI();
+
                 posta = etEposta.getText().toString().trim();
                 pasahitza = etPasahitza.getText().toString().trim();
+
+                boolean epostaExist = false;
+                String pasahitz = null;
+
+                for (int i = 0; i < saltzaileak.size(); i++) {
+                    String currentEmail = saltzaileak.get(i).getEmail();
+                    Log.d("TAG", "Saltzaile: " + saltzaileak.get(i).getEmail());
+                    if (currentEmail.equals(posta)) {
+                        epostaExist = true;
+                        pasahitz = saltzaileak.get(i).getPasahitza();
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < bezeroak.size(); i++) {
+                    String currentEmail = bezeroak.get(i).getEmail();
+                    Log.d("TAG", "Bezero: " + bezeroak.get(i).getEmail());
+                    if (currentEmail.equals(posta)) {
+                        epostaExist = true;
+                        pasahitz = bezeroak.get(i).getPasahitza();
+                        break;
+                    }
+                }
+
                 if (TextUtils.isEmpty(posta)) {
                     String sartuEposta = getResources().getString(R.string.sartuEposta);
                     etEposta.setError(sartuEposta);
+                    aktibatuUI();
                 } else if (TextUtils.isEmpty(pasahitza)) {
                     String sartuPasahitza = getResources().getString(R.string.sartuPasahitza);
                     etPasahitza.setError(sartuPasahitza);
-                } else {
-                    saioaHasi(posta, pasahitza);
+                    aktibatuUI();
+                } else if (!epostaExist) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.erEpostaLogin), Toast.LENGTH_SHORT).show();
+
+                } else if (epostaExist) {
+                    if (pasahitz.equals(pasahitza)) {
+                        // Saioa ondo hasi da
+                        cbPasahitzaGorde = findViewById(R.id.cbPasahitzaGorde);
+                        if(cbPasahitzaGorde.isChecked()) {
+                            lehentasunakGorde();
+                        } else if (!lehentasunakInfo.get(0).equals(posta) && !lehentasunakInfo.get(1).equals(pasahitza)){
+                            etEposta.setText("");
+                            etPasahitza.setText("");
+                        }
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.erPasahitzaLogin), Toast.LENGTH_SHORT).show();
+                        aktibatuUI();
+                    }
                 }
+
             }
         });
+
 
         // Erregistro textView-ean click egitean ErregistroActivitira eramago zaizu
         tvErregistratuEmen.setOnClickListener(v -> {
             Intent erregistroIntent = new Intent(LoginActivity.this, ErregistroaActivity.class);
             startActivity(erregistroIntent);
-            finish();
         });
 
         // ImageButton-ari click egitean pasahitza erakutsiko da, berriro egiten badugu click pasahitza eskutatuko da.

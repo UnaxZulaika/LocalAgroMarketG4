@@ -23,75 +23,111 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/produktuArgazkia"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/tomatea" />
-
-                <TextView
-                    android:id="@+id/produktuIzena"
-                    style="@style/TextAppearance.MaterialComponents.Body2"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="Tomatea" />
-
-                <TextView
-                    android:id="@+id/txtPrezioa"
-                    style="@style/TextAppearance.MaterialComponents.Body2"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:text="1.2€/Kg"
-                    android:textColor="@color/black" />
-
-                <ImageButton
-                    android:id="@+id/btnJaitsiKantitatea"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:src="@drawable/jaitsi" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <EditText
-                    android:id="@+id/kantitateZenbakia"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:id="@+id/produktuArgazkia"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/tomatea" />
+
+                    <TextView
+                        android:id="@+id/produktuIzena"
+                        style="@style/TextAppearance.MaterialComponents.Body2"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Tomatea" />
+
+                    <TextView
+                        android:id="@+id/txtPrezioa"
+                        style="@style/TextAppearance.MaterialComponents.Body2"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="1.2€/Kg"
+                        android:textColor="@color/black" />
+
+                    <ImageButton
+                        android:id="@+id/btnJaitsiKantitatea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/jaitsi" />
+
+                    <EditText
+                        android:id="@+id/kantitateZenbakia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:focusable="false"
+                        android:inputType="number"
+                        android:min="1"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
+                    <ImageButton
+                        android:id="@+id/btnIgoKantitatea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/igo" />
+
+                    <ImageButton
+                        android:id="@+id/btnEzabatu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="0.5"
+                        android:background="@null"
+                        android:contentDescription="Your Description"
+                        android:src="@drawable/zakarrontzia" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:inputType="number"
-                    android:min="1"
-                    android:focusable="false"
-                    android:text="1"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
+                    android:orientation="horizontal"
+                    android:layout_marginStart="15sp"
+                    android:layout_marginEnd="15sp"
+                    android:layout_marginBottom="15sp">
 
-                <ImageButton
-                    android:id="@+id/btnIgoKantitatea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:src="@drawable/igo" />
+                    <TextView
+                        android:id="@+id/tvSaltzile"
+                        style="@style/TextAppearance.MaterialComponents.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5sp"
+                        android:gravity="center"
+                        android:text="@string/saltzailea" />
 
-                <ImageButton
-                    android:id="@+id/btnEzabatu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="0.5"
-                    android:background="@null"
-                    android:contentDescription="Your Description"
-                    android:src="@drawable/zakarrontzia" />
+                    <TextView
+                        android:id="@+id/tvSaltzileIzena"
+                        style="@style/TextAppearance.MaterialComponents.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:text="Unax Zulaika" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <Button
