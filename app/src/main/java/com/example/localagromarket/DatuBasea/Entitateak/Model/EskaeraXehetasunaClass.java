@@ -1,4 +1,4 @@
-package com.example.localagromarket.DatuBasea.Entitateak;
+package com.example.localagromarket.DatuBasea.Entitateak.Model;
 
 public class EskaeraXehetasunaClass {
     private EskaeraClass eskaera = new EskaeraClass();

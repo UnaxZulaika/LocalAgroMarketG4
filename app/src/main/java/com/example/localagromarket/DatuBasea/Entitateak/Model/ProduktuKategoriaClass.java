@@ -1,7 +1,7 @@
-package com.example.localagromarket.DatuBasea.Entitateak;
+package com.example.localagromarket.DatuBasea.Entitateak.Model;
 
-import com.example.localagromarket.DatuBasea.Entitateak.KategoriaClass;
-import com.example.localagromarket.DatuBasea.Entitateak.ProduktuClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.KategoriaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.ProduktuClass;
 
 public class ProduktuKategoriaClass {
     private KategoriaClass kategoria = new KategoriaClass();

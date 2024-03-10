@@ -2,29 +2,16 @@ package com.example.localagromarket;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import android.text.InputType;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.example.localagromarket.DatuBasea.Entitateak.BezeroaClass;
-import com.example.localagromarket.DatuBasea.Entitateak.DAO.SaltzaileaDAOClass;
-import com.example.localagromarket.DatuBasea.Entitateak.SaltzaileaClass;
-import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.

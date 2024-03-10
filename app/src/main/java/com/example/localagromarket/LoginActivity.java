@@ -17,24 +17,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.localagromarket.DatuBasea.Entitateak.BezeroaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.BezeroaClass;
 import com.example.localagromarket.DatuBasea.Entitateak.DAO.BezeroDAOCLass;
 import com.example.localagromarket.DatuBasea.Entitateak.DAO.SaltzaileaDAOClass;
-import com.example.localagromarket.DatuBasea.Entitateak.SaltzaileaClass;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.SaltzaileaClass;
 import com.google.firebase.FirebaseNetworkException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 

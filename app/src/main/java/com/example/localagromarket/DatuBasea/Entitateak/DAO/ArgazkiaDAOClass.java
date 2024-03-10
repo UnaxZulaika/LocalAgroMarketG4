@@ -3,7 +3,7 @@ package com.example.localagromarket.DatuBasea.Entitateak.DAO;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.localagromarket.DatuBasea.Entitateak.ArgazkiaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.ArgazkiaClass;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

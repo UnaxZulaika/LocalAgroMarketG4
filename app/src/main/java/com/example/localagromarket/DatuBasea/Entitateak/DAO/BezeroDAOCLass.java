@@ -3,9 +3,7 @@ package com.example.localagromarket.DatuBasea.Entitateak.DAO;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.localagromarket.DatuBasea.Entitateak.BezeroaClass;
-import com.example.localagromarket.DatuBasea.Entitateak.ProduktuKategoriaClass;
-import com.example.localagromarket.DatuBasea.Entitateak.SaltzaileaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.BezeroaClass;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
