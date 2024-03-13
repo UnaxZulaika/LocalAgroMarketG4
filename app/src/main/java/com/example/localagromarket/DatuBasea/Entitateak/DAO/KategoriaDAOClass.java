@@ -3,7 +3,8 @@ package com.example.localagromarket.DatuBasea.Entitateak.DAO;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.localagromarket.DatuBasea.Entitateak.Model.ArgazkiaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.KategoriaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.ProduktuKategoriaClass;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,44 +15,44 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class ArgazkiaDAOClass {
+public class KategoriaDAOClass {
     private static final String url = "jdbc:mysql://10.5.13.127:3306/local_agro_market?autoReconnect=true&useSSL=false";
     private static final String user = "aingeru";
     private static final String password = "12345678";
 
-    // GetArgazkia
-    public List<ArgazkiaClass> getArgazkiak() {
+    // GetKategoriak
+    public List<KategoriaClass> getKategoriak() {
         try {
-            return new Argazkiak().execute().get();
+            return new Kategoria().execute().get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    private static class Argazkiak extends AsyncTask<Void, Void, List<ArgazkiaClass>> {
+    private static class Kategoria extends AsyncTask<Void, Void, List<KategoriaClass>> {
         @Override
-        protected List<ArgazkiaClass> doInBackground(Void... voids) {
-            List<ArgazkiaClass> argazkiak = new ArrayList<>();
+        protected List<KategoriaClass> doInBackground(Void... voids) {
+            List<KategoriaClass> kategoriak = new ArrayList<>();
             try {
                 Connection conn = DriverManager.getConnection(url, user, password);
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM argazkia");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM produktukategoria");
 
                 while (rs.next()) {
-                    int kodArgazkia = rs.getInt(1);
-                    String img = rs.getString(2);
-                    ArgazkiaClass argazkia = new ArgazkiaClass(kodArgazkia, img);
-                    argazkiak.add(argazkia);
+                    int kodKategoria = rs.getInt(1);
+                    String izenaEus = rs.getString(2);
+                    KategoriaClass kategoria = new KategoriaClass(kodKategoria, izenaEus);
+                    kategoriak.add(kategoria);
                 }
 
                 rs.close();
                 stmt.close();
                 conn.close();
             } catch (SQLException e) {
-                Log.e("ArgazkiaDAOClass", "Error al ejecutar la consulta MySQL", e);
+                Log.e("KategoriaDAOClass", "Error al ejecutar la consulta MySQL", e);
             }
-            return argazkiak;
+            return kategoriak;
         }
     }
 }

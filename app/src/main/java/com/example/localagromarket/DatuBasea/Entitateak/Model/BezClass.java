@@ -3,13 +3,13 @@ package com.example.localagromarket.DatuBasea.Entitateak.Model;
 public class BezClass {
     private int kodBez;
     private int portzentaia;
-    private String deskribapena;
+    private String deskribapenaEus;
 
     // Constructor
-    public BezClass(int kodBez, int portzentaia, String deskribapena) {
+    public BezClass(int kodBez, int portzentaia, String deskribapenaEus) {
         this.kodBez = kodBez;
         this.portzentaia = portzentaia;
-        this.deskribapena = deskribapena;
+        this.deskribapenaEus = deskribapenaEus;
     }
     public BezClass(){}
 
@@ -20,8 +20,8 @@ public class BezClass {
     public int getPortzentaia() {
         return portzentaia;
     }
-    public String getDeskribapena() {
-        return deskribapena;
+    public String getdeskribapenaEus() {
+        return deskribapenaEus;
     }
 
     // Setters
@@ -31,7 +31,7 @@ public class BezClass {
     public void setPortzentaia(int portzentaia) {
         this.portzentaia = portzentaia;
     }
-    public void setDeskribapena(String deskribapena) {
-        this.deskribapena = deskribapena;
+    public void setdeskribapenaEus(String deskribapenaEus) {
+        this.deskribapenaEus = deskribapenaEus;
     }
 }

@@ -42,7 +42,7 @@ public class BezDAOClass {
                     int kodBez = rs.getInt(1);
                     int portzentaia = rs.getInt(2);
                     String deskribapenaEus = rs.getString(3);
-                    BezClass bez = new BezClass();
+                    BezClass bez = new BezClass(kodBez, portzentaia, deskribapenaEus);
                     bezak.add(bez);
                 }
 

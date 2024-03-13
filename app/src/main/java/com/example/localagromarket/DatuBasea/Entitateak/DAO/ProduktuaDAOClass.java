@@ -3,6 +3,8 @@ package com.example.localagromarket.DatuBasea.Entitateak.DAO;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.localagromarket.DatuBasea.Entitateak.Model.ArgazkiaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.BezClass;
 import com.example.localagromarket.DatuBasea.Entitateak.Model.ProduktuClass;
 
 import java.sql.Connection;
@@ -36,7 +38,7 @@ public class ProduktuaDAOClass {
             try {
                 Connection conn = DriverManager.getConnection(url, user, password);
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM produktua");
+                ResultSet rs = stmt.executeQuery("SELECT p.kodProduktua, p.izenaEus, p.deskribapenaEus, p.prezioa, p.stoka, p.pisua, p.kantitateta, b.kodBez, b.portzentaia, b.deskribapenaEus, a.kodArgazkia, a.img FROM produktua p INNER JOIN bez b ON b.kodBez = p.kodBez INNER JOIN argazkia a ON a.kodArgazkia = p.kodArgazkia;");
 
                 while (rs.next()) {
                     int kodProduktua = rs.getInt(1);
@@ -46,7 +48,15 @@ public class ProduktuaDAOClass {
                     int stoka = rs.getInt(5);
                     Float pisua = rs.getFloat(6);
                     int kantitatea = rs.getInt(7);
-                    ProduktuClass produktua = new ProduktuClass();
+                    int bkodBez = rs.getInt(8);
+                    int bportzentaia = rs.getInt(9);
+                    String bdeskribapenaEus = rs.getString(10);
+                    int akodArgazkia = rs.getInt(11);
+                    String aimg = rs.getString(12);
+
+                    BezClass bez = new BezClass(bkodBez, bportzentaia, bdeskribapenaEus);
+                    ArgazkiaClass argazkia = new ArgazkiaClass(akodArgazkia, aimg);
+                    ProduktuClass produktua = new ProduktuClass(kodProduktua, izenaEus, deskribapenaEus, prezioa, stoka, pisua, kantitatea, bez, argazkia);
                     produktuak.add(produktua);
                 }
 

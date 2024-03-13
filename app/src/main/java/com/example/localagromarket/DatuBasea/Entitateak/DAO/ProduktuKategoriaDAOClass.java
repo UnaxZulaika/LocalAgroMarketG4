@@ -3,6 +3,10 @@ package com.example.localagromarket.DatuBasea.Entitateak.DAO;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.localagromarket.DatuBasea.Entitateak.Model.ArgazkiaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.BezClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.KategoriaClass;
+import com.example.localagromarket.DatuBasea.Entitateak.Model.ProduktuClass;
 import com.example.localagromarket.DatuBasea.Entitateak.Model.ProduktuKategoriaClass;
 
 import java.sql.Connection;
@@ -36,11 +40,30 @@ public class ProduktuKategoriaDAOClass {
             try {
                 Connection conn = DriverManager.getConnection(url, user, password);
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM produktukategoria");
+                ResultSet rs = stmt.executeQuery("SELECT k.kodKategoria, k.izenaEus, p.kodProduktua, p.izenaEus, p.deskribapenaEus, p.prezioa, p.stoka, p.pisua, p.kantitateta FROM produktukategoria pk INNER JOIN kategoria k On pk.kodKategoria = k.kodKategoria INNER JOIN produktua p ON p.kodProduktua = pk.kodProduktua;");
 
                 while (rs.next()) {
-                    int kodSaltzailea = rs.getInt(1);
-                    ProduktuKategoriaClass produktuKategoria = new ProduktuKategoriaClass();
+                    int kodKategoria = rs.getInt(1);
+                    String izenaEus = rs.getString(2);
+                    int kodProduktua = rs.getInt(1);
+                    String pizenaEus = rs.getString(2);
+                    String deskribapenaEus = rs.getString(3);
+                    Float prezioa = rs.getFloat(4);
+                    int stoka = rs.getInt(5);
+                    Float pisua = rs.getFloat(6);
+                    int kantitatea = rs.getInt(7);
+                    int bkodBez = rs.getInt(8);
+                    int bportzentaia = rs.getInt(9);
+                    String bdeskribapenaEus = rs.getString(10);
+                    int akodArgazkia = rs.getInt(11);
+                    String aimg = rs.getString(12);
+
+                    BezClass bez = new BezClass(bkodBez, bportzentaia, bdeskribapenaEus);
+                    ArgazkiaClass argazkia = new ArgazkiaClass(akodArgazkia, aimg);
+                    ProduktuClass produktua = new ProduktuClass(kodProduktua, pizenaEus, deskribapenaEus, prezioa, stoka, pisua, kantitatea, bez, argazkia);
+
+                    KategoriaClass kategoria = new KategoriaClass(kodKategoria, izenaEus);
+                    ProduktuKategoriaClass produktuKategoria = new ProduktuKategoriaClass(kategoria,produktua);
                     produktuKategoriak.add(produktuKategoria);
                 }
 

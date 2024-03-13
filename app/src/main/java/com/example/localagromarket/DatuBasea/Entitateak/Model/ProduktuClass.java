@@ -6,6 +6,7 @@ import com.example.localagromarket.DatuBasea.Entitateak.Model.BezClass;
 public class ProduktuClass {
     private int kodProduktua;
     private String izenaEus;
+    private String deskribapenaEus;
     private float prezioa;
     private int stoka;
     private float pisua;
@@ -14,9 +15,10 @@ public class ProduktuClass {
     private ArgazkiaClass argazkia = new ArgazkiaClass();
 
     // Constructor
-    public ProduktuClass(int kodProduktua, String izenaEus, float prezioa, int stoka, float pisua, int kantitatea, BezClass bez, ArgazkiaClass argazkia) {
+    public ProduktuClass(int kodProduktua, String izenaEus, String deskribapenaEus, float prezioa, int stoka, float pisua, int kantitatea, BezClass bez, ArgazkiaClass argazkia) {
         this.kodProduktua = kodProduktua;
         this.izenaEus = izenaEus;
+        this.deskribapenaEus = deskribapenaEus;
         this.prezioa = prezioa;
         this.stoka = stoka;
         this.pisua = pisua;
@@ -32,6 +34,9 @@ public class ProduktuClass {
     }
     public String getIzenaEus() {
         return izenaEus;
+    }
+    public String getDEskribapenaEus() {
+        return deskribapenaEus;
     }
     public float getPrezioa() {
         return prezioa;
@@ -58,6 +63,9 @@ public class ProduktuClass {
     }
     public void setIzenaEus(String izenaEus) {
         this.izenaEus = izenaEus;
+    }
+    public void setDeskribapenaEus(String deskribapenaEus) {
+        this.deskribapenaEus = deskribapenaEus;
     }
     public void setPrezioa(float prezioa) {
         this.prezioa = prezioa;
